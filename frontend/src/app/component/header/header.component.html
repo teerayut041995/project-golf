@@ -1,0 +1,52 @@
+<header>
+<!-- <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark indigo scrolling-navbar" [containerInside]="true"> -->
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark grey lighten-5 scrolling-navbar" [containerInside]="true">
+    <mdb-navbar-brand>
+      <a class="navbar-brand black-text" href="#">
+          <!-- <img src="../../../assets/images/show/logo.jfif" height="30" alt="">  -->
+          Thailand Golf Club
+      </a>
+    </mdb-navbar-brand>
+    <links>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link waves-light black-text font-Kanit" routerLink="/" mdbWavesEffect>หน้าแรก<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light black-text font-Kanit" routerLink="/promotion" mdbWavesEffect>โปรโมชัน</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light black-text font-Kanit" routerLink="/activity" mdbWavesEffect>กิจกรรม</a>
+        </li>
+        <li class="nav-item" *ngIf="!userIsAuthenticated">
+          <a class="nav-link waves-light black-text font-Kanit" routerLink="/auth/login" mdbWavesEffect>
+            <mdb-icon fas icon="sign-in-alt"></mdb-icon>
+            เข้าสู่ระบบ
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!userIsAuthenticated">
+          <a class="nav-link waves-light black-text font-Kanit" routerLink="/auth/register" mdbWavesEffect>
+              <mdb-icon far icon="registered"></mdb-icon>
+            สมัครสมาชิก
+          </a>
+        </li>
+        <!-- <li class="nav-item" *ngIf="userIsAuthenticated">
+          <a class="nav-link waves-light black-text font-Kanit" routerLink="/auth/register" mdbWavesEffect>
+              <mdb-icon far icon="registered"></mdb-icon>
+            ออกจากระบบ
+          </a>
+        </li> -->
+        <li class="nav-item dropdown" dropdown *ngIf="userIsAuthenticated">
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light black-text font-Kanit" mdbWavesEffect>
+            <mdb-icon fas icon="user"></mdb-icon> teerayut khunsuk<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light black-text font-Kanit" mdbWavesEffect href="#">โปรไฟล</a>
+            <a class="dropdown-item waves-light black-text font-Kanit" mdbWavesEffect (click)="onLogout()">ออกจากระบบ</a>
+          </div>
+        </li>
+      </ul>
+
+    </links>
+  </mdb-navbar>
+
+</header>

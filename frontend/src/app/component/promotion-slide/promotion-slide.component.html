@@ -1,0 +1,42 @@
+<div class="container">
+  <ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems">
+    <ngu-tile *nguCarouselDef="let item; let i = index; let ani = animate" [@slider]="ani">
+      <!-- <div class="tile" [style.background]="'url('+item+')'">
+        <h1>{{i + 1}}</h1>
+      </div> -->
+
+      <mdb-card>
+        <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+          <mdb-card-img [src]="item.pro_image" [alt]="item.pro_name"></mdb-card-img>
+          <a>
+            <div class="mask"></div>
+          </a>
+        </div>
+        <mdb-card-body>
+          <mdb-card-title>
+            <h4 class="font-thai">{{item.pro_name}}</h4>
+          </mdb-card-title>
+          <!-- <mdb-card-text> Some quick example text to build on the card title and make up the bulk of the card's
+            content.
+          </mdb-card-text> -->
+          <hr>
+          <div class="clearfix">
+            <p style="font-size: 25px;" class="deep-orange-lighter-hover mb-3 float-left">฿{{item.pro_price}}</p>
+            <button mdbBtn type="button" class="animated pulse infinite float-right" color="danger" size="sm" mdbWavesEffect>
+                <mdb-icon fas icon="gem"></mdb-icon> ซื้อเลย
+            </button>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+
+    </ngu-tile>
+
+    <button NguCarouselPrev class="leftRs" [style.opacity]="myCarousel.isFirst ? 0.5:1">&lt;</button>
+    <button NguCarouselNext class="rightRs" [style.opacity]="myCarousel.isLast ? 0.5:1">&gt;</button>
+
+    <ul class="myPoint" NguCarouselPoint>
+      <li *ngFor="let i of myCarousel.pointNumbers; let i = index" [class.active]="i==myCarousel.activePoint" (click)="myCarousel.moveTo(i)"></li>
+    </ul>
+  </ngu-carousel>
+</div>
+  <!-- {{ (carouselTileItems$ | async)?.length }} -->

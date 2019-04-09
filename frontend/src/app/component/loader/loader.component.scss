@@ -1,0 +1,23 @@
+.mdb-loader {
+  margin: auto;
+  display: table;
+  height: 100%;width: 100%;
+  top: 50%;
+  left: 50%;
+  // position: fixed; /* หรือจะใช้ absolute ถ้าต้องการให้มันไม่เลื่อนตามหน้าจอ*/
+  // overflow: hidden;
+  // z-index: 100; /* ถ้ายังไม่อยู่บนสุดก็เพิ่มค่านี้ */
+}
+.overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: #ccc;
+  width: 100%;
+  height: 100%;
+  opacity: .30;
+  filter: alpha(opacity=30);
+  -moz-opacity: .30;
+  z-index: 999;
+ // background: #fff url(http://i.imgur.com/KUJoe.gif) 50% 50% no-repeat;
+}

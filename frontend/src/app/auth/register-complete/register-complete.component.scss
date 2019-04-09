@@ -1,0 +1,27 @@
+.auth-content .card{
+  & i.eva {
+    font-size: 6rem;
+  }
+}
+
+.btn-midnight {
+  color: #fff;
+  background-color: #0C0C3C;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 16px rgba(0,0,0,.2);
+  }
+}
+
+.text-success {
+  font-size: 17px;
+}
+
+.view {
+  background-size: cover;
+  height: 100vh;
+}
+
+.slider-img img {
+  max-height: 100%;
+}

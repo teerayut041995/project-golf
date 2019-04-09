@@ -1,0 +1,70 @@
+<div class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+<div class="card o-hidden">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="p-4">
+                <div class="auth-logo text-center mb-4">
+                    <h1 class="mb-3 text-18 font-thai">เข้าสู่ระบบ</h1>
+                </div>
+
+                <!-- form login start -->
+                <!-- Form -->
+    <form class="text-center" style="color: #757575;" (submit)="onLogin(loginForm)" #loginForm="ngForm">
+
+        <!-- Email -->
+        <div class="md-form">
+          <input type="text"  class="form-control" mdbInput name="username" ngModel #usernameInput="ngModel" required>
+          <label>Username</label>
+          <mdb-error *ngIf="usernameInput.invalid  && (usernameInput.dirty || usernameInput.touched)">
+              ชื่อเข้าใช้งาน
+          </mdb-error>
+        </div>
+
+        <!-- Password -->
+        <div class="md-form">
+          <input type="password" class="form-control" mdbInput name="password" ngModel #passwordInput="ngModel" required>
+          <label for="materialLoginFormPassword">รหัสผ่าน</label>
+          <mdb-error *ngIf="passwordInput.invalid  && (passwordInput.dirty || passwordInput.touched)">
+              กรุณากรอกรหัสผ่าน
+          </mdb-error>
+        </div>
+
+        <div class="d-flex justify-content-around">
+          <div>
+
+          </div>
+          <div>
+            <!-- Forgot password -->
+            <a href="">ลืมรหัสผ่าน?</a>
+          </div>
+        </div>
+
+        <!-- Sign in button -->
+        <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+          type="submit" [disabled]="!loginForm.valid">เข้าสู่ระบบ</button>
+
+        <!-- Register -->
+        <p>Not a member?
+          <a href="/auth/register">สมัครสมาชิก</a>
+        </p>
+      </form>
+      <!-- Form -->
+                <!-- form login end -->
+            </div>
+        </div>
+        <div class="col-md-6 d-none d-md-block text-center" style="background: url(./assets/images/show/login-page.jpg)no-repeat center center;width: 100%;background-size: cover;" >
+            <div class="pr-3 auth-right">
+                <!-- <button class="btn btn-primary btn-block btn-icon btn-email" routerLink="/sessions/signup"></button> -->
+                <!-- <div class="mt-5">
+                    <a class="text-white" href="" routerLink="/sessions/forgot"><u>Forgot Password</u></a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<p><br></p>

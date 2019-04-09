@@ -1,0 +1,120 @@
+<!-- <div class="overlay"></div> -->
+<div class="container">
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <p></p>
+<div class="card o-hidden">
+    <div class="row">
+        <div class="col-md-6 d-none d-md-block text-center" style="background: url(./assets/images/show/register-page.jpg)no-repeat center center;width: 100%;background-size: cover;" >
+
+        </div>
+        <div class="col-md-6">
+
+            <app-loader *ngIf="isLoading"></app-loader>
+            <div class="p-4">
+                <div class="auth-logo text-center mb-4">
+                    <h1 class="mb-3 text-18 font-thai">เข้าสู่ระบบ</h1>
+                </div>
+
+                <!-- form login start -->
+                <!-- Form -->
+            <form class="text-center" style="color: #757575;" (submit)="onRegister(formRegister)" #formRegister="ngForm">
+
+              <div class="form-row">
+                    <div class="col">
+                      <!-- First name -->
+                      <div class="md-form">
+                        <input type="text" class="form-control" name="first_name" mdbInput ngModel #firstNameInput="ngModel" required (keyup)="onKeyName($event)">
+                        <label for="materialRegisterFormFirstName">ชื่อ</label>
+                        <mdb-error *ngIf="firstNameInput.invalid  && (firstNameInput.dirty || firstNameInput.touched)">
+                          กรุณากรอกชื่อ
+                        </mdb-error>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <!-- Last name -->
+                      <div class="md-form">
+                        <input type="text" class="form-control" mdbInput name="last_name" ngModel #lastNameInput="ngModel" required (keyup)="onKeyName($event)">
+                        <label>นามสกุล</label>
+                        <!-- <mdb-error *ngIf="lastNameInput.invalid  && (lastNameInput.dirty || lastNameInput.touched)">
+                            กรุณากรอกนามสกุล
+                        </mdb-error> -->
+                      </div>
+                    </div>
+                    <mdb-error *ngIf="error.name != ''">
+                      {{error.name}}
+                    </mdb-error>
+                </div>
+                <!-- Email -->
+                <div class="md-form">
+                  <input type="text" class="form-control" mdbInput name="username" ngModel #usernameInput="ngModel" required (keyup)="onKeyUsername($event)">
+                  <label>ชื่อเข้าใช้งาน</label>
+                  <mdb-error *ngIf="usernameInput.invalid  && (usernameInput.dirty || usernameInput.touched)">
+                      กรุณากรอกชื่อเข้าใช้งาน
+                  </mdb-error>
+                  <mdb-error *ngIf="error.username != ''">
+                    {{error.username}}
+                  </mdb-error>
+                </div>
+
+                <!-- Password -->
+                <div class="md-form">
+                  <input type="password" class="form-control" mdbInput name="password" ngModel #passwordInput="ngModel" required (keyup)="onKeyPassword($event)">
+                  <label>รหัสผ่าน</label>
+                  <mdb-error *ngIf="passwordInput.invalid  && (passwordInput.dirty || passwordInput.touched)">
+                      กรุณากรอกรหัสผ่าน
+                  </mdb-error>
+                  <mdb-error *ngIf="error.password != ''">
+                    {{error.password}}
+                  </mdb-error>
+                </div>
+                <div class="md-form">
+                    <input type="password" name="password_confirmation" class="form-control" mdbInput ngModel #passwordConfirmInput="ngModel" required>
+                    <label >ยืนยันรหัสผ่าน</label>
+                    <mdb-error *ngIf="(passwordConfirmInput.value  != passwordInput.value) && (passwordConfirmInput.dirty || passwordConfirmInput.touched)">
+                      รหัสผ่านไม่ตรงกัน
+                    </mdb-error>
+                </div>
+
+                <div class="md-form">
+                    <input type="text" class="form-control"  mdbInput name="phone" ngModel #phoneInput="ngModel" required (keyup)="onKeyPhone($event)">
+                    <label>เบอร์โทรศัพท์</label>
+                    <mdb-error *ngIf="phoneInput.invalid  && (phoneInput.dirty || phoneInput.touched)">
+                        กรุณากรอกเบอร์โทรศัพท์
+                    </mdb-error>
+                    <mdb-error *ngIf="error.phone != ''">
+                      {{error.phone}}
+                    </mdb-error>
+                </div>
+
+                <div class="md-form text-left">
+                    <input type="email" class="form-control" mdbInput name="email" ngModel #emailInput="ngModel" email>
+                    <label >อีเมล
+                        <small>
+                           (สามารถเว้นว่างได้)
+                        </small>
+                    </label>
+
+                    <mdb-error *ngIf="emailInput.invalid  && (phoneInput.dirty || emailInput.touched)">
+                        กรุณากรอกอีเมลให้ถูกต้อง
+                    </mdb-error>
+                </div>
+
+                <!-- Sign in button -->
+                <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+                  type="submit" [disabled]="!formRegister.valid">ลงชื่อเข้าใช้งาน</button>
+
+                <!-- Register -->
+                <p>เป็นสมาชิกอยู่แล้ว
+                  <a href="/auth/login">เข้าสู่ระบบ</a>
+                </p>
+              </form>
+              <!-- Form -->
+                <!-- form login end -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<p><br></p>
