@@ -41,17 +41,17 @@ Trait ApiResponser {
 	protected function showAllTransform($message = "success", Collection $collection , $code = 200)
 	{
 		if ($collection->isEmpty()) {
-			return $this->successResponse($message , $collection , $code);
+			//return $this->successResponse($message , $collection , $code);
 		}
 		$transformer = $collection->first()->transformer;
 		$collection = $this->transformData($collection , $transformer);
-		return $this->successResponse($message , $collection , $code);
+		return response()->json($collection , $code);
 	}
 
 	protected function showOneTransform($message , Model $instance , $code = 200)
 	{
 		$transformer = $instance->transformer;
 		$instance = $this->transformData($instance , $transformer);
-		return $this->successResponse($message , $instance , $code);
+		return response()->json($instance , $code);
 	}
 }

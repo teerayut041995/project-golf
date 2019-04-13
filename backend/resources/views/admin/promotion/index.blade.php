@@ -47,7 +47,7 @@
                             @foreach($promotions as $promotion)
                             <tr>
                               <td>{{$promotion->pro_name}}</td>
-                              <td>{{number_format($promotion->pro_price,)}}</td>
+                              <td>{{number_format($promotion->pro_price)}}</td>
                               <td>{{createDateThai($promotion->pro_start_date)}}</td>
                               <td>{{createDateThai($promotion->pro_end_date)}}</td>
                               <td>

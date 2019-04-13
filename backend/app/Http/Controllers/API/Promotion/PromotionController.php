@@ -17,14 +17,13 @@ class PromotionController extends ApiController
      */
     public function index()
     {
-        //return $promotion = PromotionResource::collection(Promotion::all());
-        //$promotion = PromotionsResource(Promotion::all());
-        //return $promotion;
-        $promotion = Promotion::all();
+        $promotion = Promotion::where('pro_end_date', '>=' , Carbon::now())
+                            ->orderBy('pro_start_date' , 'ASC')
+                            ->get();
         return $this->showAllTransform("success promotion" , $promotion , 200);
     }
 
-    public function promotionNow() {
+    public function now() {
 
         $promotion = Promotion::where('pro_start_date', '<' , Carbon::now())
                               ->where('pro_end_date', '>' , Carbon::now())
@@ -38,14 +37,9 @@ class PromotionController extends ApiController
      * @param  \App\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //return new PromotionResource(Promotion::find($id));
-        // $promotion = PromotionsResource::collection(Promotion::find($id));
-        // return $promotion;
-        // $promotion = PromotionsResource::collection(Promotion::all());
-        // return $promotion;
-        $promotion = Promotion::find($id);
-        return $this->showOne("load data promotion success" , $promotion , 200);
+        $promotion = Promotion::where('pro_slug' , $slug)->first();
+        return $this->showOneTransform("success promotion" , $promotion , 200);
     }
 }

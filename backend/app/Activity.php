@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Transformers\ActivityTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
@@ -9,6 +10,7 @@ class Activity extends Model
 {
     use Sluggable;
 
+    public $transformer = ActivityTransformer::class;
     /**
      * Return the sluggable configuration array for this model.
      *

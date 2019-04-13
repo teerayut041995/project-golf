@@ -21,6 +21,15 @@ Route::post('login', 'API\Auth\LoginController@login');
 Route::get('logout', 'API\Auth\LoginController@logout')->middleware('auth:api');
 Route::post('register', 'API\Auth\RegisterController@register');
 
-Route::middleware('auth:api')->get('promotions' , 'API\Promotion\PromotionController@index');
-Route::middleware('auth:api')->get('promotions/now' , 'API\Promotion\PromotionController@promotionNow');
-Route::middleware('auth:api')->get('promotions/{id}' , 'API\Promotion\PromotionController@show');
+Route::get('promotions' , 'API\Promotion\PromotionController@index');
+Route::get('promotions/now' , 'API\Promotion\PromotionController@now');
+Route::get('promotions/active' , 'API\Promotion\PromotionController@index');
+Route::get('promotions/{slug}' , 'API\Promotion\PromotionController@show');
+
+
+
+// Route::middleware('auth:api')->get('promotions/{id}' , 'API\Promotion\PromotionController@show');
+
+Route::get('activities/calendar' , 'API\Activity\ActivityController@calendar');
+Route::get('activities/{slug}' , 'API\Activity\ActivityController@show');
+
