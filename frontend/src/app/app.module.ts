@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -21,8 +21,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
 import { SliderComponent } from './component/slider/slider.component';
-import { PromotionSlideComponent } from './component/promotion-slide/promotion-slide.component';
-import { ActivityCalenderComponent } from './component/activity-calender/activity-calender.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -30,16 +28,18 @@ import { HomeComponent } from './home/home.component';
 import { LoaderComponent } from './component/loader/loader.component';
 import { RegisterCompleteComponent } from './auth/register-complete/register-complete.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { PromotionComponent } from './pages/promotion/promotion.component';
-import { ActivityComponent } from './pages/activity/activity.component';
+import { PromotionNowComponent } from './pages/promotion/promotion-now/promotion-now.component';
+import { ActivityCalendarComponent } from './pages/activity/activity-calendar/activity-calendar.component';
+import { PromotiomListComponent } from './pages/promotion/promotiom-list/promotiom-list.component';
+import { PromotiomDetailComponent } from './pages/promotion/promotiom-detail/promotiom-detail.component';
+import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
+import { ActivityListComponent } from './pages/activity/activity-list/activity-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SliderComponent,
-    PromotionSlideComponent,
-    ActivityCalenderComponent,
     FooterComponent,
     LoginComponent,
     RegisterComponent,
@@ -47,12 +47,16 @@ import { ActivityComponent } from './pages/activity/activity.component';
     LoaderComponent,
     RegisterCompleteComponent,
     ProfileComponent,
-    PromotionComponent,
-    ActivityComponent,
+    PromotionNowComponent,
+    ActivityCalendarComponent,
+    PromotiomListComponent,
+    PromotiomDetailComponent,
+    ActivityDetailComponent,
+    ActivityListComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     MDBBootstrapModule.forRoot(),
     FormsModule,
     HttpClientModule,

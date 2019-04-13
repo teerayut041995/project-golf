@@ -9,17 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
 import { SliderComponent } from './component/slider/slider.component';
-import { PromotionSlideComponent } from './component/promotion-slide/promotion-slide.component';
-import { ActivityCalenderComponent } from './component/activity-calender/activity-calender.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { AppModule } from './app.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
-    MDBBootstrapModule.forRoot(),
-    // NgxCarouselModule,
-    // FullCalendarModule,
     AppRoutingModule,
     AppModule,
     BrowserTransferStateModule,

@@ -1,0 +1,54 @@
+<p><br></p>
+<p><br></p>
+<p></p>
+
+<app-promotion-now></app-promotion-now>
+<div class="container">
+  <div class="row">
+        <div class="col-md-12">
+            <h4 class="card-title h4 pb-2 font-thai"><strong>โปรโมชัน</strong></h4>
+            <hr>
+        </div>
+  </div>
+            <a class="nav-link waves-light black-text font-Kanit" routerLink="/activity" mdbWavesEffect>กิจกรรม</a>
+
+  <div class="row">
+    <div class="col-md-12">
+      <!-- News jumbotron -->
+      <div class="jumbotron p-0" *ngFor="let promotion of promotions">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="view overlay  waves-light" mdbWavesEffect>
+              <img [src]="promotion.pro_image" class="img-fluid" alt="Sample image for first version of blog listing">
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-7 text-md-left ml-3 mr-3 mt-3 mb-3">
+            <h4 class="h4 mb-2 font-thai">{{promotion.pro_name}}</h4>
+            <h6 class="h6 pb-1 red-text">
+                <mdb-icon far icon="calendar-alt"></mdb-icon> เริ่มซื้อโปรโมชันได้ตั้งแต่วันที่ {{promotion.start_date_thai}}
+            </h6>
+            <h6 class="h6 pb-1 red-text">
+                <mdb-icon far icon="calendar-alt"></mdb-icon> จนถึงวันที่ {{promotion.end_date_thai}}
+            </h6>
+            <h6 class="h6 pb-1 red-text">
+                <mdb-icon far icon="money-bill-alt"></mdb-icon> ราคา {{promotion.pro_price}}
+            </h6>
+            <a [routerLink]="['/promotion',promotion.pro_slug]"  class="green-text" >
+              <h6 class="h6 pb-1"  style="font-size: 10px;"><mdb-icon fas icon="info-circle"></mdb-icon> อ่านรายละเอียดเพิ่มเติม</h6>
+            </a>
+            <div class="row">
+                <div class="col-md-12">
+                    <a mdbBtn type="button" color="danger" block="true" size="sm"  mdbWavesEffect>ซื้อเลย</a>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- News jumbotron -->
+    </div>
+  </div>
+</div>

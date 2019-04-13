@@ -1,0 +1,11 @@
+// .my-font {
+//   font-family: 'Mitr', sans-serif;
+// }
+.cut-title {
+  font-size:1em;
+  line-height:1em;
+  height:4em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

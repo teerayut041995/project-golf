@@ -14,12 +14,12 @@ import {
   format
 } from 'date-fns';
 import { Observable } from 'rxjs';
-//import { colors } from '../demo-utils/colors';
 
 interface Film {
   id: number;
-  title: string;
-  release_date: string;
+  act_name: string;
+  act_start_date: string;
+  act_end_date: string;
 }
 
 function getTimezoneOffsetString(date: Date): string {
@@ -34,14 +34,12 @@ function getTimezoneOffsetString(date: Date): string {
 }
 
 @Component({
-  selector: 'app-activity-calender',
+  selector: 'app-activity-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './activity-calender.component.html',
-  styleUrls: ['./activity-calender.component.scss']
+  templateUrl: './activity-calendar.component.html',
+  styleUrls: ['./activity-calendar.component.scss']
 })
-export class ActivityCalenderComponent implements OnInit {
-  // view: string = 'month';
-
+export class ActivityCalendarComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
@@ -97,14 +95,17 @@ export class ActivityCalenderComponent implements OnInit {
       .set('api_key', '0ec33936a68018857d727958dca1424f');
 
     this.events$ = this.http
-      .get('https://api.themoviedb.org/3/discover/movie', { params })
+      .get('http://127.0.0.1:8000/api/activities/calendar')
       .pipe(
-        map(({ results }: { results: Film[] }) => {
-          return results.map((film: Film) => {
+        map(({ data }: { data: Film[] }) => {
+          return data.map((film: Film) => {
             return {
-              title: film.title,
+              title: film.act_name,
               start: new Date(
-                film.release_date + getTimezoneOffsetString(this.viewDate)
+                film.act_start_date + getTimezoneOffsetString(this.viewDate)
+              ),
+              end: new Date(
+                film.act_end_date + getTimezoneOffsetString(this.viewDate)
               ),
               color: this.colors.yellow,
               allDay: true,
@@ -137,11 +138,12 @@ export class ActivityCalenderComponent implements OnInit {
     }
   }
 
-  eventClicked(event: CalendarEvent<{ film: Film }>): void {
-    window.open(
-      `https://www.themoviedb.org/movie/${event.meta.film.id}`,
-      '_blank'
-    );
+  eventClicked(event: CalendarEvent<any>): void {
+    console.log(event);
+    // window.open(
+    //   `https://www.themoviedb.org/movie/${event.meta.film.id}`,
+    //   '_blank'
+    // );
   }
 
   setView(view: CalendarView) {
