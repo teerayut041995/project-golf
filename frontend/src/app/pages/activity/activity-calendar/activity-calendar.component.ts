@@ -14,8 +14,9 @@ import {
   format
 } from 'date-fns';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
-interface Film {
+interface Activity {
   id: number;
   act_name: string;
   act_start_date: string;
@@ -60,11 +61,11 @@ export class ActivityCalendarComponent implements OnInit {
   };
   viewDate: Date = new Date();
 
-  events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
+  events$: Observable<Array<CalendarEvent<{ activity: Activity }>>>;
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchEvents();
@@ -97,20 +98,20 @@ export class ActivityCalendarComponent implements OnInit {
     this.events$ = this.http
       .get('http://127.0.0.1:8000/api/activities/calendar')
       .pipe(
-        map(({ data }: { data: Film[] }) => {
-          return data.map((film: Film) => {
+        map(({ data }: { data: Activity[] }) => {
+          return data.map((activity: Activity) => {
             return {
-              title: film.act_name,
+              title: activity.act_name,
               start: new Date(
-                film.act_start_date + getTimezoneOffsetString(this.viewDate)
+                activity.act_start_date + getTimezoneOffsetString(this.viewDate)
               ),
               end: new Date(
-                film.act_end_date + getTimezoneOffsetString(this.viewDate)
+                activity.act_end_date + getTimezoneOffsetString(this.viewDate)
               ),
               color: this.colors.yellow,
               allDay: true,
               meta: {
-                film
+                activity
               }
             };
           });
@@ -123,7 +124,7 @@ export class ActivityCalendarComponent implements OnInit {
     events
   }: {
     date: Date;
-    events: Array<CalendarEvent<{ film: Film }>>;
+    events: Array<CalendarEvent<{ activity: Activity }>>;
   }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -139,7 +140,9 @@ export class ActivityCalendarComponent implements OnInit {
   }
 
   eventClicked(event: CalendarEvent<any>): void {
-    console.log(event);
+    console.log(event.meta.activity.act_slug);
+    const slug = event.meta.activity.act_slug;
+    this.router.navigate(['/activity/' + slug]);
     // window.open(
     //   `https://www.themoviedb.org/movie/${event.meta.film.id}`,
     //   '_blank'

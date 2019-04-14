@@ -18,7 +18,6 @@ export class PromotiomDetailComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('slug')) {
         this.slug = paramMap.get('slug');
-        //alert(this.slug);
         this.promotionService.getPromotionDetail(this.slug).subscribe(response => {
           this.promotion = response.data;
           console.log(this.promotion);

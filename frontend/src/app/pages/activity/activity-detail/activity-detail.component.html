@@ -1,3 +1,43 @@
-<p>
-  activity-detail works!
-</p>
+<div class="container">
+  <p><br></p>
+  <p><br></p>
+  <p><br></p>
+  <div class="row">
+    <div class="col md-9">
+      <!-- Jumbotron -->
+    <div class="jumbotron">
+
+        <!-- Title -->
+        <h4 class="card-title h4 pb-2 text-center font-thai"><strong>{{ activity?.act_name }}</strong></h4>
+
+        <!-- Card image -->
+        <div class="view overlay my-4 waves-light" mdbWavesEffect>
+          <img [src]="activity?.act_image" class="img-fluid" alt="">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <h5 class="indigo-text h5 mb-4 font-thai text-center">ราคาเข้าร่วมกิจกรรม</h5>
+        <h5 class="h5 mb-4 font-thai text-center deep-orange-lighter-hover">฿ {{ activity?.act_price }}</h5>
+
+        <h5 class="indigo-text h5 mb-4 font-thai text-center">รายละเอียด</h5>
+
+        <p class="card-text" [innerHTML]="activity?.act_detail"></p>
+
+        <h6 class="h6 pb-1 ">
+          <mdb-icon far icon="calendar-alt"></mdb-icon> กิจกรรมเริ่มวันที่ {{activity?.start_date_thai}} จนถึงวันที่ {{activity?.end_date_thai}}
+        </h6>
+
+        <div class="row">
+          <div class="col-md-12">
+            <a mdbBtn type="button" color="danger" block="true"  mdbWavesEffect>สมัครเข้าร่วมกิจกรรม</a>
+          </div>
+        </div>
+
+      </div>
+      <!-- Jumbotron -->
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
