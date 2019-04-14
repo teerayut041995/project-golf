@@ -53,6 +53,7 @@ class ActivityController extends Controller
         //$images = $request->file('act_image')->store('activity');
         $activity = new Activity([
             'act_name' => $request->act_name,
+            'act_price' => $request->act_price,
             'act_detail' => $request->act_detail,
             'act_start_date' => $request->act_start_date,
             'act_end_date' => $request->act_end_date,
@@ -104,6 +105,7 @@ class ActivityController extends Controller
             }
         }
         $activity->act_name = $request->act_name;
+        $activity->act_price = $request->act_price;
         $activity->act_detail = $request->act_detail;
         $activity->act_start_date = $request->act_start_date;
         $activity->act_end_date = $request->act_end_date;

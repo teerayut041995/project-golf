@@ -39,6 +39,7 @@
                               <th>รายละเอียด</th>
                               <th style="width: 15%;">วันที่เริ่มกิจกรรม</th>
                               <th style="width: 15%;">วันที่สิ้นสุดกิจกรรม</th>
+                              <th style="width: 15%;">ราคา</th>
                               <th style="width: 10%;">รูปภาพ</th>
                               <th style="width: 10%;">จัดการข้อมูล</th>
                             </tr>
@@ -50,6 +51,7 @@
                               <td>{{$activity->act_detail}}</td>
                               <td>{{createDateThai($activity->act_start_date)}}</td>
                               <td>{{createDateThai($activity->act_end_date)}}</td>
+                              <td>{{$activity->act_price}}</td>
                               <td>
                                   <img src="{{url('images/activity' , $activity->act_image)}}" style="width: 80px;height: 80px;">
                               </td>

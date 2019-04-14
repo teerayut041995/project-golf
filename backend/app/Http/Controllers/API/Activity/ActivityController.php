@@ -36,8 +36,8 @@ class ActivityController extends ApiController
      */
     public function show($slug)
     {
-        return $activity = Activity::where('act_slug' , $slug)->first();
-        //return $this->showOneTransform("success promotion" , $activity , 200);
+        $activity = Activity::where('act_slug' , $slug)->first();
+        return $this->showOneTransform("success promotion" , $activity , 200);
     }
 
 }

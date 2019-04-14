@@ -51,8 +51,12 @@
                         <input type="text" class="form-control" name="act_name" value="{{$activity->act_name}}" required placeholder="ชื่อกิจกรรม">
                       </div>
                       <div class="form-group">
+                        <label >ราคา</label>
+                        <input type="text" class="form-control" name="act_price" value="{{$activity->act_price}}" required placeholder="ราคา">
+                      </div>
+                      <div class="form-group">
                         <label for="exampleInputPassword1">รายละเอียด</label>
-                        <textarea type="text" class="form-control" name="act_detail" placeholder="รายละเอียด">{{$activity->act_detail}}</textarea>
+                        <textarea type="text" class="form-control" rows="10" name="act_detail" placeholder="รายละเอียด">{{$activity->act_detail}}</textarea>
                       </div>
                       <div class="form-group">
                         <label >วันที่เริ่มกิจกรรม</label>

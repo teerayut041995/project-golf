@@ -25,6 +25,7 @@ class ActivityRequest extends FormRequest
     {
         return [
             'act_name' => 'required|max:191',
+            'act_price' => 'required|numeric',
             'act_image' => 'required|image',
             'act_start_date' => 'required|date',
             'act_end_date' => 'required|date',
@@ -36,6 +37,8 @@ class ActivityRequest extends FormRequest
     {
         $messages = [
             'act_name.required' => 'กรุณากรอกชื่อกิจกรรม',
+            'act_price.required' => 'กรุณากรอกราคากิจกรรม',
+            'act_price.numeric' => 'กรุณากรอกราคาเป็นตัวเลข',
             'act_start_date.required' => 'กรุณากรอกวันที่เริ่มกิจกรรม',
             'act_start_date.date' => 'กรุณากรอกเป็นวันที่',
             'act_end_date.required' => 'กรุณากรอกวันที่สิ้นสุดกิจกรรม',

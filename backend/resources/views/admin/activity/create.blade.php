@@ -50,8 +50,12 @@
                   <input type="text" class="form-control" name="act_name" placeholder="ชื่อกิจกรรม">
                 </div>
                 <div class="form-group">
+                  <label >ราคา</label>
+                  <input type="text" class="form-control" name="act_price" placeholder="ราคา">
+                </div>
+                <div class="form-group">
                   <label for="exampleInputPassword1">รายละเอียด</label>
-                  <textarea type="text" class="form-control" name="act_detail" placeholder="รายละเอียด"></textarea>
+                  <textarea type="text" class="form-control" name="act_detail" rows="10" placeholder="รายละเอียด"></textarea>
                 </div>
                 <div class="form-group">
                   <label >วันที่เริ่มกิจกรรม</label>

@@ -26,7 +26,7 @@ class Activity extends Model
     }
 
     protected $fillable = [
-    	'act_name' , 'act_slug', 'act_detail' , 'act_image' , 'act_start_date' , 'act_end_date'
+    	'act_name' , 'act_slug', 'act_price' , 'act_detail' , 'act_image' , 'act_start_date' , 'act_end_date'
     ];
 
 }
