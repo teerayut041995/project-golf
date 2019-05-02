@@ -38,9 +38,11 @@
         </li> -->
         <li class="nav-item dropdown" dropdown *ngIf="userIsAuthenticated">
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light black-text font-Kanit" mdbWavesEffect>
-            <mdb-icon fas icon="user"></mdb-icon> teerayut khunsuk<span class="caret"></span></a>
+            <mdb-icon fas icon="user"></mdb-icon> {{ name }}<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
             <a class="dropdown-item waves-light black-text font-Kanit" mdbWavesEffect href="#">โปรไฟล</a>
+            <a class="dropdown-item waves-light black-text font-Kanit" mdbWavesEffect routerLink="/profile/activity-orders">ข้อมูลกิจกรรม</a>
+            <a class="dropdown-item waves-light black-text font-Kanit" mdbWavesEffect routerLink="/profile/promotion-orders">ข้อมูลโปรโมชัน</a>
             <a class="dropdown-item waves-light black-text font-Kanit" mdbWavesEffect (click)="onLogout()">ออกจากระบบ</a>
           </div>
         </li>

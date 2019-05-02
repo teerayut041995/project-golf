@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs';
 export class HeaderComponent implements OnInit , OnDestroy {
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
-
+  name: string;
+  private nameSub: Subscription;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -19,13 +20,21 @@ export class HeaderComponent implements OnInit , OnDestroy {
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
     });
+    this.name = localStorage.getItem('name');
+    this.nameSub = this.authService.getAuthDataUpdateListener()
+      .subscribe(response => {
+        console.log('test : ', response);
+        this.name = response;
+      });
   }
 
   onLogout() {
+    // /this.name = '';
     this.authService.logout();
   }
 
   ngOnDestroy() {
-    this.authListenerSubs.unsubscribe();
+    // this.authListenerSubs.unsubscribe();
+    // this.nameSub.unsubscribe();
   }
 }

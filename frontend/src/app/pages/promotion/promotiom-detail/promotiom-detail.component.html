@@ -27,7 +27,10 @@
 
           <div class="row">
             <div class="col-md-12">
-              <a mdbBtn type="button" color="danger" block="true"  mdbWavesEffect>ซื้อโปรโมชัน</a>
+              <a mdbBtn type="button" *ngIf="userIsAuthenticated" (click)="onBuyPromotion()"  color="danger" block="true"  mdbWavesEffect>ซื้อโปรโมชัน</a>
+              <a mdbBtn  *ngIf="!userIsAuthenticated" routerLink="/auth/register" class="animated pulse infinite float-right" color="danger" block="true"  mdbWavesEffect>
+                <mdb-icon fas icon="gem"></mdb-icon> สมัครสมาชิกเพื่อซื้อโปรโมชัน
+              </a>
             </div>
           </div>
 

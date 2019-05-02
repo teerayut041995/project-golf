@@ -1,0 +1,260 @@
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <mdb-card>
+        <mdb-card-body>
+          <mdb-card-title class="text-center">
+            <h4><mdb-icon far icon="handshake" size="3x" class="cyan-text pr-3" aria-hidden="true"></mdb-icon></h4>
+            <h4 class="font-thai">สั่งซื้อกิจกรรมเรียบร้อย</h4>
+            <h4 class="font-thai cyan-text">( {{ order?.order_status }} )</h4>
+            <p class="font-thai">รายการสั่งซื้อของคุณคือ #{{ order?.id }}</p>
+          </mdb-card-title>
+          <p><br></p>
+          <div class="row">
+            <div class="col-md-4 text-center" >
+              <h6 class="text-info"><mdb-icon far icon="clock"  size="2x" class="cyan-text pr-3"></mdb-icon></h6>
+              <strong class="font-thai">ซื้อกิจกรรมวันที่</strong>
+              <p class="font-thai">{{ order?.created_at }}</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <h6 class="text-danger"><mdb-icon far icon="money-bill-alt" size="2x" class="red-text pr-3"></mdb-icon></h6>
+              <strong class="font-thai">จำนวนเงินที่ต้องชำระ</strong>
+              <p class="font-thai">{{ order?.amount }}</p>
+            </div>
+            <div class="col-md-4  text-center">
+              <h6 class="text-success"><mdb-icon fas icon="bolt" size="2x" class="pr-3"></mdb-icon></h6>
+              <strong class="font-thai">สถานะใบสั่งซื้อสินค้า</strong>
+              <p class="font-thai">{{ order?.order_status }}</p>
+            </div>
+          </div>
+          <p></p>
+          <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="font-thai">
+                    รายละเอียดกิจกรรม
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table mdbTable bordered="true" style="width: 99%;">
+                          <thead>
+                            <tr class="text-center">
+                              <th scope="col" >รูปภาพ</th>
+                              <th scope="col">ชื่อกิจกรรม</th>
+                              <th scope="col">วันที่เริ่มกิจกรรม</th>
+                              <th scope="col">วันที่สิ้นสุดกิจกรรม</th>
+                              <!-- <th scope="col">ราคา</th> -->
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th style="width: 30%;">
+                                <img [src]="activity?.act_image" class="img-fluid z-depth-1"
+                                alt="Responsive image">
+                              </th>
+                              <td style="width: 30%;">{{activity?.act_name}}</td>
+                              <td style="width: 15%;" class="text-center">{{activity?.start_date_thai}}</td>
+                              <td style="width: 15%;" class="text-center">{{activity?.end_date_thai}}</td>
+                              <!-- <td style="width: 10%;" class="text-center">{{activity?.act_price}}</td> -->
+                            </tr>
+                            <tr>
+                              <td colspan="4">
+                                รายละเอียดกิจกรรม
+                              </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="card-text" [innerHTML]="activity?.act_detail"></p>
+                                    </div>
+                                  </div>
+                                </td>
+                            </tr>
+                            <tr>
+                              <td colspan="2" class="text-left">
+                                ราคารวม
+                              </td>
+                              <td colspan="2" class="text-right">
+                                {{activity?.act_price}} บาท
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p><br></p>
+                        <p><br></p>
+                      </div>
+                </div>
+              </div>
+            </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+</div>
+
+<form [formGroup]="form" (submit)="onPayment()" *ngIf="order?.order_status === 'ยังไม่แจ้งชำระเงิน'">
+<p></p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <mdb-card>
+          <mdb-card-body>
+            <mdb-card-title class="text-center">
+              <h4><mdb-icon fas icon="bell" size="3x" class="red-text pr-3" aria-hidden="true"></mdb-icon></h4>
+              <h4 class="font-thai">แจ้งชำระเงิน</h4>
+              <h4 class="font-thai cyan-text">( {{ order?.order_status }} )</h4>
+              <p class="font-thai">รายการสั่งซื้อของคุณคือ #{{ order?.id }}</p>
+            </mdb-card-title>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                      <table mdbTable class="text-center" style="width: 95%;">
+                          <thead>
+                            <tr>
+                              <th>เลือก</th>
+                              <th>ธนาคาร</th>
+                              <th>หมายเลขบัญชี</th>
+                              <th>ชื่อ</th>
+                              <th style="width: 20%;">พร้อมเพย์</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr mdbTableCol *ngFor="let bank of banks">
+                              <td>
+                                <input type="radio" formControlName="bank_id" [value]="bank.id">
+                              </td>
+                              <td>
+                                ธนาคาร {{bank.bank_name}} <br>
+                                สาขา {{bank.bank_branch}}
+                              </td>
+                              <td>{{bank.account_number}}</td>
+                              <td>{{bank.account_name}}</td>
+                              <td>
+                                  <img [src]="bank.promptpay_qr" class="img-fluid z-depth-1">
+                                  <hr>
+                                  <p>{{bank.promptpay_number}}</p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+                  <p><br></p>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">วันที่ชำระเงิน</label>
+                    <div class="col-sm-6">
+                        <input type="date" formControlName="payment_date" class="form-control" mdbInput>
+                        <!-- <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" mdbInput formControlName="payment_date">
+                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time> -->
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">เวลา</label>
+                      <div class="col-sm-2">
+                        <select formControlName="payment_hour" class="form-control" mdbInput>
+                          <option value="" selected>-- ช.ม --</option>
+                          <option [value]="i" *ngFor="let i of hour" >{{i}}</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-2">
+                          <select formControlName="payment_minute" class="form-control" mdbInput>
+                            <option value="" selected>-- นาที --</option>
+                            <option [value]="i" *ngFor="let i of minute" >{{i}}</option>
+                          </select>
+                        </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">จำนวนเงิน</label>
+                      <div class="col-sm-6">
+                        <input mdbInput type="text" class="form-control" formControlName="payment_amount">
+                      </div>
+                      <div class="col-sm-4 text-left">
+                        บาท
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">หลักฐานการโอน</label>
+                      <div class="col-sm-6">
+                          <div>
+                              <button mdbBtn type="button" color="primary" outline="true" mdbWavesEffect (click)="filePicker.click()" size="sm">เลือกรูปภาพ</button>
+                              <input type="file" #filePicker (change)="onImagePicked($event)" accept="image/*">
+                            </div>
+                            <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+                              <img [src]="imagePreview" [alt]="form.value.title">
+                            </div>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <button mdbBtn type="submit" color="danger" mdbWavesEffect>แจ้งชำระเงิน</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+    <div class="container" *ngIf="order?.order_status !== 'ยังไม่แจ้งชำระเงิน'">
+        <p></p>
+        <div class="row">
+          <div class="col-md-12">
+            <mdb-card>
+              <mdb-card-body>
+                <mdb-card-title class="text-center">
+                  <h4><mdb-icon fas icon="file-alt" size="3x" class="cyan-text pr-3" aria-hidden="true"></mdb-icon></h4>
+                  <h4 class="font-thai">ข้อมูลการชำระเงิน</h4>
+                  <h4 class="font-thai cyan-text">( {{ order?.order_status }} )</h4>
+                  <p class="font-thai">รายการสั่งซื้อของคุณคือ #{{ order?.id }}</p>
+                </mdb-card-title>
+
+                <div class="row">
+                  <div class="col-md-2 col-sm-12"><label class="font-thai">ชำระเงินผ่าน</label></div>
+                  <div class="col-md-10 col-sm-12">
+                    <label class="font-thai">ธนาคาร {{ order?.bank.data.bank_name }} เลขที่บัญชี {{ order?.bank.data.account_number }} </label>
+                  </div>
+
+                  <div class="col-md-2 col-sm-12"><label class="font-thai">ชำระวันที่</label></div>
+                  <div class="col-md-10 col-sm-12">
+                    <label class="font-thai"> {{ order?.payment_date_thai }} </label>
+                  </div>
+
+                  <div class="col-md-2 col-sm-12"><label class="font-thai">เวลา</label></div>
+                  <div class="col-md-10 col-sm-12">
+                    <label class="font-thai"> {{ order?.payment_time }} น.</label>
+                  </div>
+
+                  <div class="col-md-2 col-sm-12"><label class="font-thai">จำนวนเงิน</label></div>
+                  <div class="col-md-10 col-sm-12">
+                    <label class="font-thai"> {{ order?.payment_amount }} บาท</label>
+                  </div>
+
+                  <div class="col-md-3 col-sm-12"><label class="font-thai">หลักฐานการชำระเงิน</label></div>
+                  <div class="col-md-9 col-sm-12">
+                    <img [src]="order?.payment_image" class="img-fluid z-depth-1">
+                  </div>
+
+                </div>
+
+              </mdb-card-body>
+            </mdb-card>
+          </div>
+        </div>
+      </div>
+
+<p><br></p>
+<p><br></p>

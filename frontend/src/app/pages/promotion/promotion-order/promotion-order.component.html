@@ -1,0 +1,50 @@
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+        <!-- <h4><mdb-icon fas icon="calendar-check" size="3x" class="cyan-text pr-3" aria-hidden="true"></mdb-icon></h4> -->
+        <h4 class="font-thai">ข้อมูลการเข้าร่วมโปรโมชัน</h4>
+        <h4 class="font-thai cyan-text"></h4>
+        <p class="font-thai"></p>
+    </div>
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 10%;">รูปภาพ</th>
+                  <th scope="col" style="width: 15%;">ชื่อโปรโมชัน</th>
+                  <th scope="col" style="width: 15%;">วันที่เริ่มโปรโมชัน</th>
+                  <th scope="col" style="width: 15%;">วันที่สิ้นสุดโปรโมชัน</th>
+                  <th scope="col" style="width: 15%;">ราคา</th>
+                  <th scope="col" style="width: 15%;">สถานะ</th>
+                  <th scope="col" style="width: 15%;">ดูใบสั่งซื้อ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let order of orders">
+                  <th>
+                      <img [src]="order?.promotion.data.pro_image" class="img-fluid z-depth-1"
+                      alt="Responsive image">
+                  </th>
+                  <td>{{order?.promotion.data.pro_name}}</td>
+                  <td>{{order?.start_date}}</td>
+                  <td>{{order?.end_date}}</td>
+                  <td>{{order?.amount}}</td>
+                  <td>{{order?.order_status}}</td>
+                  <td>
+                    <button mdbBtn type="button" (click)="onOrderDetail(order?.id)" color="cyan" size="sm" mdbWavesEffect >ดูใบสั่งซื้อ</button>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+    </div>
+  </div>
+</div>
+
+<p><br></p>
+<p><br></p>

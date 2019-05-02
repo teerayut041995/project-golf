@@ -3,11 +3,13 @@ import {
   OnInit,
   AfterViewInit,
   ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
 import { NguCarouselConfig } from '@ngu/carousel';
 import { PromotionService } from '../promotion.service';
 import { Promotion } from './../promotion.model';
 import { Subscription } from 'rxjs';
+import { AuthService } from './../../../auth/auth.service';
 
 
 @Component({
@@ -16,8 +18,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./promotion-now.component.scss']
 })
 
-export class PromotionNowComponent implements OnInit ,  AfterViewInit {
-
+export class PromotionNowComponent implements OnInit , OnDestroy , AfterViewInit {
+  userIsAuthenticated = false;
+  private authListenerSubs: Subscription;
 
   public carouselTileItems: Array<any> = [];
 
@@ -47,17 +50,27 @@ export class PromotionNowComponent implements OnInit ,  AfterViewInit {
   posts: Promotion[] = [];
   private promotionSub: Subscription;
 
-  constructor(private cdr: ChangeDetectorRef, private promotionService: PromotionService) {}
+  constructor(private cdr: ChangeDetectorRef, private promotionService: PromotionService, private authService: AuthService) {}
 
   ngOnInit() {
-    this.promotionService.getPromotionNow();
-    this.promotionSub = this.promotionService.getPromotionDataListener()
-      .subscribe((response: Promotion[]) => {
-        this.carouselTileItems = response;
-      });
+    this.promotionService.getPromotionNow()
+      .subscribe(response => {
+        this.carouselTileItems = response.data;
+    });
+
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService.getAuthStatusListerner()
+      .subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    });
+
   }
 
   ngAfterViewInit() {
     this.cdr.detectChanges();
+  }
+
+  ngOnDestroy() {
+    // this.authListenerSubs.unsubscribe();
   }
 }

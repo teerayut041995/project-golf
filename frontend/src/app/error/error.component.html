@@ -1,0 +1,30 @@
+<div mdbModal #basicModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-danger modal-sm" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <!-- <div class="modal-header">
+        <p class="heading lead">Modal Danger</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div> -->
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="text-center">
+          <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
+          <p>{{data?.message}}</p>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="danger" class="waves-effect" block="true" size="sm" mdbWavesEffect (click)="basicModal.hide()">ปิด</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

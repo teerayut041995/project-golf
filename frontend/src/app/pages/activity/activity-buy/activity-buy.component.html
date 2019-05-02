@@ -1,0 +1,81 @@
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="font-thai">
+        กิจกรรมที่คุณต้องการสั่งซื้อ
+      </h4>
+      <small class="font-thai">
+        กรุณาตรวจสอบรายละเอียดกิจกรรม จากนั้นคลิกปุ่ม “ยืนยันการสั่งซื้อ” เพื่อทำการสั่งซื้อกิจกรรม
+      </small>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table" style="width: 96%;">
+              <thead class="grey  lighten-1 black-text">
+                <tr class="text-center">
+                  <th scope="col" >รูปภาพ</th>
+                  <th scope="col">ชื่อกิจกรรม</th>
+                  <th scope="col">วันที่เริ่มกิจกรรม</th>
+                  <th scope="col">วันที่สิ้นสุดกิจกรรม</th>
+                  <th scope="col">ราคา</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th style="width: 30%;">
+                    <img [src]="activity?.act_image" class="img-fluid z-depth-1"
+                    alt="Responsive image">
+                  </th>
+                  <td style="width: 30%;">{{activity?.act_name}}</td>
+                  <td style="width: 15%;" class="text-center">{{activity?.start_date_thai}}</td>
+                  <td style="width: 15%;" class="text-center">{{activity?.end_date_thai}}</td>
+                  <td class="text-center">{{activity?.act_price}}</td>
+                </tr>
+                <tr>
+                  <td colspan="5">
+                    รายละเอียดกิจกรรม
+                  </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                      <div class="row">
+                        <div class="col-md-6">
+                            <p class="card-text" [innerHTML]="activity?.act_detail"></p>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="text-right">
+                    ราคารวม
+                  </td>
+                  <td>
+                    {{activity?.act_price}} บาท
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-left">
+                    <p class="font-thai">กรุณาตรวจสอบรายละเอียดก่อนยืนยันการสั่งซื้อ</p>
+                  </td>
+                  <td colspan="3" class="text-right">
+                    <a mdbBtn type="button"  color="danger" (click)="onBuyActivity()" mdbWavesEffect>ยืนยันการสั่งซื้อ</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="5"></td>
+                </tr>
+              </tbody>
+            </table>
+            <p><br></p>
+            <p><br></p>
+          </div>
+    </div>
+  </div>
+</div>

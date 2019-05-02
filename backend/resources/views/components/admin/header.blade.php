@@ -18,30 +18,21 @@
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="count-notification" data-count="{{count(auth()->user()->notifications)}}">
+              <i class="fa fa-bell-o"></i>
+              @if(count(auth()->user()->unreadNotifications) > 0)
+                <span class="label label-danger show-count-notification">{{count(auth()->user()->unreadNotifications)}}</span>
+              @endif
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header show-count-notification">คุณมี {{count(auth()->user()->unreadNotifications)}} การแจ้งเตือนใหม่</li>
               <li>
                 <!-- inner menu: contains the messages -->
                 <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <!-- User Image -->
-                        <img src="{{asset('template/admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-                      </div>
-                      <!-- Message title and timestamp -->
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <!-- The message -->
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
+                  @foreach(auth()->user()->notifications as $notification)
+                    @include('admin.notification.'.snake_case(class_basename($notification->type)))
+                  
+                  @endforeach
                   <!-- end message -->
                 </ul>
                 <!-- /.menu -->

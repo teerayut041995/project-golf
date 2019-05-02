@@ -1,3 +1,5 @@
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
 .font-thai {
   font-family: 'Kanit', sans-serif;
 }
@@ -641,6 +643,9 @@
   color: black; }
   @import "../node_modules/angular-calendar/scss/angular-calendar.scss";
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

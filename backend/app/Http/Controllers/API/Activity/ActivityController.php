@@ -24,9 +24,6 @@ class ActivityController extends ApiController
         //return $this->showAll("success promotion" , $activity , 200);
         return $this->showAllTransform('load data activity calendar success' , $activity , 201);
     }
-    
-
-    
 
     /**
      * Display the specified resource.
@@ -39,5 +36,7 @@ class ActivityController extends ApiController
         $activity = Activity::where('act_slug' , $slug)->first();
         return $this->showOneTransform("success promotion" , $activity , 200);
     }
+
+    
 
 }

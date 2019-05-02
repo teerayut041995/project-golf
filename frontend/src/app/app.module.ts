@@ -1,9 +1,11 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NguCarouselModule } from '@ngu/carousel';
+
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { CommonModule } from '@angular/common';
 import { TransferHttpCacheModule } from '@nguniversal/common';
@@ -14,7 +16,9 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+// import { ModalModule, WavesModule, InputsModule, ButtonsModule } from 'angular-bootstrap-md';
 
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +38,14 @@ import { PromotiomListComponent } from './pages/promotion/promotiom-list/promoti
 import { PromotiomDetailComponent } from './pages/promotion/promotiom-detail/promotiom-detail.component';
 import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
 import { ActivityListComponent } from './pages/activity/activity-list/activity-list.component';
+import { ActivityBuyComponent } from './pages/activity/activity-buy/activity-buy.component';
+import { ActivityOrderDetailComponent } from './pages/activity/activity-order-detail/activity-order-detail.component';
+import { ActivityOrderComponent } from './pages/activity/activity-order/activity-order.component';
+import { PromotionBuyComponent } from './pages/promotion/promotion-buy/promotion-buy.component';
+import { ErrorInterceptor } from './error-interceptor';
+import { ErrorComponent } from './error/error.component';
+import { PromotionOrderDetailComponent } from './pages/promotion/promotion-order-detail/promotion-order-detail.component';
+import { PromotionOrderComponent } from './pages/promotion/promotion-order/promotion-order.component';
 
 @NgModule({
   declarations: [
@@ -52,21 +64,30 @@ import { ActivityListComponent } from './pages/activity/activity-list/activity-l
     PromotiomListComponent,
     PromotiomDetailComponent,
     ActivityDetailComponent,
-    ActivityListComponent
+    ActivityListComponent,
+    ActivityBuyComponent,
+    ActivityOrderDetailComponent,
+    ActivityOrderComponent,
+    PromotionBuyComponent,
+    ErrorComponent,
+    PromotionOrderDetailComponent,
+    PromotionOrderComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     MDBBootstrapModule.forRoot(),
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     NguCarouselModule,
-    MatProgressSpinnerModule,
+    MatDialogModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
     }),
+    NgbModule,
     AppRoutingModule,
     CommonModule,
     TransferHttpCacheModule,
@@ -74,8 +95,10 @@ import { ActivityListComponent } from './pages/activity/activity-list/activity-l
     NgtUniversalModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS , useClass: AuthInterceptor , multi: true}
+    {provide: HTTP_INTERCEPTORS , useClass: AuthInterceptor , multi: true},
+    {provide: HTTP_INTERCEPTORS , useClass: ErrorInterceptor , multi: true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }

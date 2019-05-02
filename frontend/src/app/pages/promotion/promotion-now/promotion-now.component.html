@@ -6,6 +6,7 @@
       </div>
     </div>
     <ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems">
+
       <ngu-tile *nguCarouselDef="let item; let i = index; let ani = animate" >
         <!-- <div class="tile" [style.background]="'url('+item+')'">
           <h1>{{i + 1}}</h1>
@@ -28,9 +29,12 @@
             <hr>
             <div class="clearfix">
               <p style="font-size: 25px;" class="deep-orange-lighter-hover mb-3 float-left">฿{{item.pro_price}}</p>
-              <button mdbBtn type="button" class="animated pulse infinite float-right" color="danger" size="sm" mdbWavesEffect>
+              <button mdbBtn type="button" *ngIf="userIsAuthenticated" class="animated pulse infinite float-right" color="danger" size="sm" mdbWavesEffect>
                   <mdb-icon fas icon="gem"></mdb-icon> ซื้อเลย
               </button>
+              <a mdbBtn  *ngIf="!userIsAuthenticated" routerLink="/auth/register" class="animated pulse infinite float-right" color="danger" size="sm" mdbWavesEffect>
+                  <mdb-icon fas icon="gem"></mdb-icon> สมัครสมาชิก
+              </a>
             </div>
           </mdb-card-body>
         </mdb-card>

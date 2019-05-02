@@ -60,10 +60,45 @@ function dateThai($int){
     $num = intval($int);
     $arr = [" ","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
     return $arr[$num];
-  }
-  function dateThaiShort($int){
+}
+
+function dateThaiShort($int){
     $num = intval($int);
     $arr = [" ","ม.ค.","ก.พ.","มี.ค.","เม.ษ","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
     return $arr[$num];
-  }
-?>
+}
+
+function checkDuration($start_date, $end_date)
+{
+    $status = '';
+    $now = Carbon\Carbon::now();
+    if ($now < $start_date) {
+        $status = 'ยังไม่เริ่มโปรโมชัน';
+    } else if ($now > $end_date) {
+        $status = 'หมดโปรโมชันแล้ว';
+    } else {
+        $start = Carbon\Carbon::parse($start_date);
+        $end = Carbon\Carbon::parse($end_date);
+        if($now->between($start,$end)){
+            $status = 'อยู่ในช่วงโปรโมชั่น';
+        }
+    }
+    return $status;
+}
+
+function checkOrderStatus($order_status)
+{
+    $status = '';
+    if($order_status == 'new') {
+        $status = 'ยังไม่แจ้งชำระเงิน';
+    } else if($order_status == 'playment') {
+        $status = 'แจ้งชำระเงินแล้ว';
+    } else if($order_status == 'confirm') {
+        $status = 'ยืนยันการชำระเงินแล้ว';
+    } else if($order_status == 'not_confirm') {
+        $status = 'ข้อมูลการชำระเงินไม่ถูกต้อง';
+    } else {
+        $status = 'ยกเลิกการสั่งซื้อ';
+    }
+    return $status;
+}

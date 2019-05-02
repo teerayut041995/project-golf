@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Transformers\UserTransformer;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -10,6 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
+
+    public $transformer = UserTransformer::class;
 
     const VERIFIED_USER = '1';
     const UNVERIFIED_USER = '0';

@@ -1,0 +1,95 @@
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <app-error></app-error> -->
+      <h4 class="font-thai">
+        โปรโมชันที่คุณต้องการสั่งซื้อ
+      </h4>
+      <small class="font-thai">
+        กรุณาตรวจสอบรายละเอียดโปรโมชัน จากนั้นคลิกปุ่ม “ยืนยันการสั่งซื้อ” เพื่อทำการสั่งซื้อโปรโมชัน
+      </small>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table" style="width: 96%;">
+              <thead class="grey  lighten-1 black-text">
+                <tr class="text-center">
+                  <th scope="col" >รูปภาพ</th>
+                  <th scope="col">ชื่อโปรโมชัน</th>
+                  <th scope="col">วันที่เริ่มโปรโมชัน</th>
+                  <th scope="col">วันที่สิ้นสุดโปรโมชัน</th>
+                  <th scope="col">ราคา</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th style="width: 30%;">
+                    <img [src]="promotion?.pro_image" class="img-fluid z-depth-1"
+                    alt="Responsive image">
+                  </th>
+                  <td style="width: 30%;">{{promotion?.pro_name}}</td>
+                  <td style="width: 15%;" class="text-center">{{promotion?.start_date_thai}}</td>
+                  <td style="width: 15%;" class="text-center">{{promotion?.end_date_thai}}</td>
+                  <td class="text-center">{{promotion?.pro_price}}</td>
+                </tr>
+                <tr>
+                  <td colspan="5">
+                    รายละเอียดโปรโมชัน
+                  </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                      <div class="row">
+                        <div class="col-md-6">
+                            <p class="card-text" [innerHTML]="promotion?.pro_detail"></p>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="text-right">
+                    ราคารวม
+                  </td>
+                  <td>
+                    {{promotion?.pro_price}} บาท
+                  </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left">
+                        <button mdbBtn type="button" color="primary" mdbWavesEffect (click)="d.toggle()" size="sm">
+                            <mdb-icon fas icon="calendar-alt" class="mr-1"></mdb-icon> เลือกวันที่ใช้บริการ
+                        </button>
+                        <input class="form-control" class="select-date" [(ngModel)]="model" placeholder="yyyy-mm-dd" [minDate]="minDate"
+                                   name="dp"  ngbDatepicker #d="ngbDatepicker" [maxDate]="maxDate">
+                    </td>
+                    <td colspan="3" class="text-right">
+                        <h5 *ngIf="model" class="font-thai">วันที่ {{ model.day }} เดือน {{ model.month }} ปี {{ model.year }} </h5>
+                        <h5 *ngIf="message && !model" class="font-thai red-text">{{ message }}</h5>
+                    </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-left">
+                      <p class="font-thai">กรุณาตรวจสอบรายละเอียดก่อนยืนยันการสั่งซื้อ</p>
+                  </td>
+                  <td colspan="3" class="text-right">
+                    <a mdbBtn type="button"  color="danger" (click)="onBuyPromotion()" mdbWavesEffect>ยืนยันการสั่งซื้อ</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="5"></td>
+                </tr>
+              </tbody>
+            </table>
+            <p><br></p>
+            <p><br></p>
+          </div>
+    </div>
+  </div>
+</div>

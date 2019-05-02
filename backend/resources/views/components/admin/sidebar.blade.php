@@ -28,6 +28,18 @@
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>จัดการข้อมูลสมาชิก</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{url('admin/users')}}">ข้อมูลสมาชิก</a></li>
+            <li><a href="{{url('admin/users/create')}}">เพิ่มข้อมูลสมาชิก</a></li>
+          </ul>
+        </li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>จัดการข้อมูลโปรโมชัน</span>
             <span class="pull-right-container">
@@ -35,9 +47,9 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('admin/promotions')}}">ข้อมูลข้อมูลโปรโมชัน</a></li>
+            <li><a href="{{url('admin/promotions')}}">ข้อมูลโปรโมชัน</a></li>
             <li><a href="{{url('admin/promotions/create')}}">เพิ่มข้อมูลโปรโมชัน</a></li>
-            <li><a href="#">รายงานการซื้อข้อมูลโปรโมชัน</a></li>
+            <li><a href="{{url('admin/orders/promotions')}}">รายงานการซื้อข้อมูลโปรโมชัน</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -49,7 +61,7 @@
           <ul class="treeview-menu">
             <li><a href="{{url('admin/activities')}}">ข้อมูลกิจกรรมทั้งหมด</a></li>
             <li><a href="{{url('admin/activities/create')}}">เพิ่มข้อมูลกิจกรรม</a></li>
-            <li><a href="#">รายงานการซื้อกิจกรรม</a></li>
+            <li><a href="{{url('admin/orders/activities')}}">รายงานการซื้อกิจกรรม</a></li>
           </ul>
         </li>
         <li class="treeview">

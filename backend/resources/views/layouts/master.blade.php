@@ -75,6 +75,24 @@
 <!-- CK Editor -->
 <script src="{{asset('template/admin/bower_components/ckeditor/ckeditor.js')}}"></script>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    make_as_read();
+    function make_as_read()
+    {
+      $(document).on('click', '#count-notification', function(){
+        var count = $(this).attr('data-count');
+        $.ajax({
+          url: "{{url('admin/notification/make-as-read')}}",
+          method: 'GET',
+          success:function(data) {
+            $('.show-count-notification').hide();
+          }
+        });
+      });
+    }
+  });
+</script>
 @yield('script')
 </body>
 </html>
